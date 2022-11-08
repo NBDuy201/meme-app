@@ -1,14 +1,18 @@
-.page-container {
-  display: grid;
-  row-gap: 10px;
-}
-
-.meme-container {
-  max-width: 800px;
+body {
+  margin: 0;
 }
 
 .meme {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border: 4px solid #c3bcb6;
+  border-radius: 10px;
+}
+
+.page-container {
+  background: #dad6d2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }

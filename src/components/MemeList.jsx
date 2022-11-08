@@ -3,6 +3,15 @@ import React from "react";
 import { useQuery } from "react-query";
 import Meme from "./Meme";
 import axios from "axios";
+import { Button, createTheme, ImageList, ImageListItem } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#D6D2DA",
+    },
+  },
+});
 
 const getData = async () => {
   try {
@@ -23,6 +32,7 @@ const MemeList = () => {
   }, [status, data]);
 
   const handleLoadMeme = () => {
+    console.log("run");
     if (status === "success") {
       setMemes(data);
     }
@@ -36,12 +46,21 @@ const MemeList = () => {
 
   return (
     <>
-      <button onClick={handleLoadMeme}>Show memes</button>
-      {memes.map((item) => (
-        <div key={item.id} className="meme-container">
-          <Meme data={item}></Meme>
-        </div>
-      ))}
+      <Button
+        theme={theme}
+        variant="contained"
+        sx={{ fontWeight: "bold" }}
+        onClick={() => handleLoadMeme()}
+      >
+        Show memes
+      </Button>
+      <ImageList variant="masonry" cols={4} gap={20}>
+        {memes.map((item) => (
+          <ImageListItem key={item.id}>
+            <Meme data={item}></Meme>
+          </ImageListItem>
+        ))}
+      </ImageList>
     </>
   );
 };
